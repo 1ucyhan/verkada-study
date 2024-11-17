@@ -1,0 +1,45 @@
+h1 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.nav-lobby {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 30px;
+    align-items: center;
+    justify-content: start;
+}
+
+.nav-text {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: start;
+}
+
+.vertical-line {
+    /* width: 40px; */
+    height: 20px;
+    /* border: 3px solid red; */
+    border-left: 1px solid lightgray;
+    /* max-height: 40px; */
+}
+
+.dropdown {
+    min-width: 300px;
+    padding: 10px 30px 10px 15px;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMTUgN2wtNyA3LTctNyIvPjwvc3ZnPg==') no-repeat right 10px center;
+    background-size: 10px;
+    appearance: none;
+    padding-right: 40px; 
+}

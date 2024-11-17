@@ -1,0 +1,38 @@
+img {
+    height: 250px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    display: block;
+}
+
+.circles {
+    background-color: green;
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    border: 2px solid white;
+}
+
+.cam-shot {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+
+.cam-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #252726;
+    padding: 8px 10px 8px 10px;
+    border-radius: 20px;
+    position: absolute;
+    gap: 5px;
+    font-size: 12px;
+    bottom: 1%;
+    font-weight: 500;
+    left: 3%;
+    color: white;
+}
