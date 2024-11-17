@@ -2,6 +2,7 @@ import './App.css';
 import NavBar from './components/navbar/NavBar';
 import LeftNavBar from './components/left-navbar/LeftNavBar';
 import Camera from './components/camera/Camera';
+import CheckIn from './components/check-in/CheckIn';
 import MockImage1 from "./assets/mock.webp";
 import MockImage2 from "./assets/pig.jpg";
 
@@ -39,6 +40,15 @@ function App() {
               />
             )
           })}
+        </section>
+        <section className = "check-ins">
+          <CheckIn 
+            name = ""
+            hostName = ""
+            type = ""
+            time = ""
+          />
+          
         </section>
 
       </section>
