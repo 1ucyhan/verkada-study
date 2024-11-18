@@ -1,16 +1,15 @@
 import React from 'react';
 import './NavBar.css';
 
-export default function NavBar({props: setSelection}) {
+export default function NavBar({props: filterGuest}) {
     const updateDropdown = (event) => {
         console.log("dropdown clicked")
         const value = event.target.value;
         console.log("got hte value ", value);
         if (value == "All") {
-            setSelection(null)
+            filterGuest(null)
         } else {
-            setSelection(value)
-            console.log(value)
+            filterGuest(value)
         }
     }
 

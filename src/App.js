@@ -1,9 +1,12 @@
 import './App.css';
+import { React, useState } from 'react';
+// Importing all of the components.
 import NavBar from './components/navbar/NavBar';
 import LeftNavBar from './components/left-navbar/LeftNavBar';
 import RightNavBar from './components/right-navbar/RightNavBar';
 import Camera from './components/camera/Camera';
 import CheckIn from './components/check-in/CheckIn';
+// Importing all of the images.
 import MockImage1 from "./assets/mock.webp";
 import MockImage2 from "./assets/pig.jpg";
 import DadImage from "./assets/daddy.jpeg";
@@ -12,8 +15,8 @@ import IlyasImage from "./assets/ilyas.jpeg";
 import KaylaImage from "./assets/kayla.jpeg";
 import MomImage from "./assets/mommy.jpeg";
 import NhiImage from "./assets/nhi.JPG";
-import {React, useState} from 'react';
 
+// Data for displaying the camera component.
 export const cameraData = [
   {
     id: 1,
@@ -27,6 +30,7 @@ export const cameraData = [
   }
 ];
 
+// Data for displaying the guest data.
 export const checkInData = [
   {
     firstName: "Gabriel",
@@ -84,17 +88,43 @@ export const checkInData = [
   },
 ];
 
+
+
 function App() {
   // Call use state for display the correct type of guests.
+  // Note that setSelection is passed in as a property to nav bar.
+  // Selection is only changed once the user goes on the dropdown to select something.
   const [selection, setSelection] = useState(() => null)
+  console.log("selection : ", selection)
+  // Setting a state to remove guests.
+  const [guests, setGuests] = useState(() => checkInData);
 
-  // Need to create a new list to display only the filtered guys.
-  const filteredGuests = selection
-  ? checkInData.filter((person) => person.type == selection)
-  : checkInData;
+  // Want to be able to remove guest. Would probably use filter again?
+  // Filter through all these people. I want all of them except that one guest.
 
-  console.log("selection :", selection)
-  console.log("filteredGuests :", filteredGuests)
+  /**
+   * Helper function to remove any guest on sign out.
+   * Calls filter and setGuest.
+   * @param {*} guest 
+   */
+  function removeGuest(guest) {
+    console.log('remove guest called')
+    const newGuestList = guests.filter((person) => person.firstName != guest)
+    setGuests(newGuestList)
+  }
+
+  /**
+   * Helper function to filter any guest.
+   * Calls setSelection, setGuest, and filter.
+   * @param {*} type 
+   */
+  function filterGuest(type) {
+    console.log('filter guest called')
+    const filteredGuests = type
+      ? checkInData.filter((person) => person.type == type)
+      : checkInData;
+    setGuests(filteredGuests);
+  }
 
   return (
     <div className="App">
@@ -103,7 +133,7 @@ function App() {
       {/* The actual content. Should contain the cameras and guests. */}
       <section class="content">
         {/* Navigation bar. */}
-        <NavBar props={setSelection}></NavBar>
+        <NavBar props={filterGuest}></NavBar>
         {/* Cameras. */}
         {/* Information is from cameraData. */}
         <section className="cameras">
@@ -117,26 +147,28 @@ function App() {
             )
           })}
         </section>
+        {/* Displaying all the check-ins. */}
         <section className="check-ins">
-          {filteredGuests.map((person) => {
+          {guests.map((person) => {
             return (
               <CheckIn
+                key = {person.firstName}
                 firstName={person.firstName}
                 lastName={person.lastName}
                 hostName={person.hostName}
                 type={person.type}
                 time={person.time}
-                personImage = {person.personImage}
-                hostImage = {person.hostImage}
+                personImage={person.personImage}
+                hostImage={person.hostImage}
+                // Need to have this guy in a wrapper. Otherwise will be rendered each time.
+                signOut={() => removeGuest(person.firstName)}
               />
             )
           })}
         </section>
+        {/* Right Nav Bar for more practice. */}
         <RightNavBar></RightNavBar>
-
       </section>
-
-
     </div>
   );
 }

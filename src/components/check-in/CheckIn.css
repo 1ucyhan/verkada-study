@@ -70,6 +70,7 @@
 }
 
 .check-in-logistics button {
+    transition: 0.5s ease;
     display: flex;
     justify-content: center;
     align-items: center;

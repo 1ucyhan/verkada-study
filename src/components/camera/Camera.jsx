@@ -1,6 +1,5 @@
 import React from 'react';
 import './Camera.css'
-import MockImage from '../../assets/mock.webp';
 
 export default function Camera({image, name}) {
     return (
