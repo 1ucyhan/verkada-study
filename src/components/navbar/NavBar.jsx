@@ -10,9 +10,9 @@ export default function NavBar () {
                 <h3 className = "nav-lobby"> Guest Demo Lobby</h3>
             </section>
             <select className = "dropdown">
-                <option value = "today"> Today </option>
-                <option value = "week"> This Week </option>
-                <option value = "month"> This Month </option>
+                <option value = "pookie"> Pookie </option>
+                <option value = "guest"> Guest </option>
+                <option value = "parent"> Parent </option>
             </select>
             {/* <h4> Notifications off </h4>
             <label class="switch">

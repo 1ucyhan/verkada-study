@@ -1,0 +1,102 @@
+/* Styling for the entire check-in component. */
+.check-in {
+    flex-direction: row;
+    width:90%;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+    font-size: 14px;
+    height: 100px;
+    
+}
+
+/* Styling for check in profiles (pics, name, host). */
+.check-in-profiles {
+    margin: 20px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+
+}
+
+.check-in-pics {
+    /* Parent shoudl always have position relative */
+    position: relative;
+    width: 50px;
+    height: 60px;
+}
+
+.check-in-pics img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 30px;
+    z-index: 1;
+}
+
+.check-in-pics img:nth-of-type(2) {
+    position: absolute;
+    /* left: 0px; */
+    bottom: 0px;
+    left: 30px;
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+}
+
+.check-in-names {
+    width: fit;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.check-in-names p {
+    margin: 2px;
+}
+
+/* Styling for check in logistics (time and sign out). */
+.check-in-logistics {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 18%;
+}
+
+.check-in-logistics button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-weight: 400;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: none;
+    font-family: Inter;
+    padding: 10px 20px 10px 20px;
+}
+
+.check-in-logistics button:hover {
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-weight: 400;
+    background-color: rgb(33, 33, 33);
+    border-radius: 20px;
+    border: none;
+    font-family: Inter;
+    padding: 10px 20px 10px 20px;
+}
+
+.iconify:hover {
+    color: white;
+}
