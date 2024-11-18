@@ -86,12 +86,15 @@ export const checkInData = [
 
 function App() {
   // Call use state for display the correct type of guests.
-  const [selection, setSelection] = useState(() => ["Pookie", "Guest", "Family"])
+  const [selection, setSelection] = useState(() => null)
 
   // Need to create a new list to display only the filtered guys.
-  const filteredGuests = checkInData.filter((person) => {
-    return person.type == selection
-  })
+  const filteredGuests = selection
+  ? checkInData.filter((person) => person.type == selection)
+  : checkInData;
+
+  console.log("selection :", selection)
+  console.log("filteredGuests :", filteredGuests)
 
   return (
     <div className="App">
