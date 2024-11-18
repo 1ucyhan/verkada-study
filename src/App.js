@@ -12,6 +12,7 @@ import IlyasImage from "./assets/ilyas.jpeg";
 import KaylaImage from "./assets/kayla.jpeg";
 import MomImage from "./assets/mommy.jpeg";
 import NhiImage from "./assets/nhi.JPG";
+import {React, useState} from 'react';
 
 export const cameraData = [
   {
@@ -84,6 +85,14 @@ export const checkInData = [
 ];
 
 function App() {
+  // Call use state for display the correct type of guests.
+  const [selection, setSelection] = useState(() => ["Pookie", "Guest", "Family"])
+
+  // Need to create a new list to display only the filtered guys.
+  const filteredGuests = checkInData.filter((person) => {
+    return person.type == selection
+  })
+
   return (
     <div className="App">
       {/* Left side bar. Will probably not implement LMAO */}
@@ -91,7 +100,7 @@ function App() {
       {/* The actual content. Should contain the cameras and guests. */}
       <section class="content">
         {/* Navigation bar. */}
-        <NavBar></NavBar>
+        <NavBar props={setSelection}></NavBar>
         {/* Cameras. */}
         {/* Information is from cameraData. */}
         <section className="cameras">
@@ -106,7 +115,7 @@ function App() {
           })}
         </section>
         <section className="check-ins">
-          {checkInData.map((person) => {
+          {filteredGuests.map((person) => {
             return (
               <CheckIn
                 firstName={person.firstName}
