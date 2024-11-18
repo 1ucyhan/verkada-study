@@ -6,6 +6,12 @@ import Camera from './components/camera/Camera';
 import CheckIn from './components/check-in/CheckIn';
 import MockImage1 from "./assets/mock.webp";
 import MockImage2 from "./assets/pig.jpg";
+import DadImage from "./assets/daddy.jpeg";
+import GabImage from "./assets/gab.jpeg";
+import IlyasImage from "./assets/ilyas.jpeg";
+import KaylaImage from "./assets/kayla.jpeg";
+import MomImage from "./assets/mommy.jpeg";
+import NhiImage from "./assets/nhi.JPG";
 
 export const cameraData = [
   {
@@ -26,42 +32,54 @@ export const checkInData = [
     lastName: "Ong",
     hostName: "Lucy Han",
     type: "Pookie",
-    time: "11:11 PM"
+    time: "11:11 PM",
+    personImage: GabImage,
+    hostImage: MockImage2
   },
   {
     firstName: "Kayla",
     lastName: "Bui",
     hostName: "Lucy Han",
     type: "Guest",
-    time: "9:22 PM"
+    time: "9:22 PM",
+    personImage: KaylaImage,
+    hostImage: MockImage2
   },
   {
     firstName: "Nhi",
     lastName: "Quach",
     hostName: "Lucy Han",
     type: "Guest",
-    time: "3:21 PM"
+    time: "3:21 PM",
+    personImage: NhiImage,
+    hostImage: MockImage2
   },
   {
     firstName: "Lucy",
     lastName: "Han",
     hostName: "Ilyas Kose",
     type: "Guest",
-    time: "1:12 PM"
+    time: "1:12 PM",
+    personImage: MockImage2,
+    hostImage: IlyasImage
   },
   {
     firstName: "Yu",
     lastName: "Han",
     hostName: "Lucy Han",
     type: "Family",
-    time: "12:11 PM"
+    time: "12:11 PM",
+    personImage: DadImage,
+    hostImage: MockImage2
   },
   {
     firstName: "Min",
     lastName: "Shi",
     hostName: "Lucy Han",
     type: "Family",
-    time: "12:12 PM"
+    time: "12:12 PM",
+    personImage: MomImage,
+    hostImage: MockImage2
   },
 ];
 
@@ -96,6 +114,8 @@ function App() {
                 hostName={person.hostName}
                 type={person.type}
                 time={person.time}
+                personImage = {person.personImage}
+                hostImage = {person.hostImage}
               />
             )
           })}

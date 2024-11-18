@@ -1,14 +1,13 @@
 import React from 'react';
 import './CheckIn.css';
-import MockImage1 from "/Users/lucyhan/Desktop/verkada/verkada/src/assets/pig.jpg";
 
-export default function CheckIn({ firstName, lastName, hostName, type, time }) {
+export default function CheckIn({ firstName, lastName, hostName, type, time, personImage, hostImage }) {
     return (
         <section className="check-in">
             <section className="check-in-profiles">
                 <section className="check-in-pics">
-                    <img src={MockImage1} />
-                    <img src={MockImage1} />
+                    <img src={personImage} alt = {type}/>
+                    <img src={hostImage} alt = {type}/>
                 </section>
                 <section className="check-in-names">
                     <p> {firstName} <span style={{ fontWeight: 'bold' }}>{lastName}</span></p>
