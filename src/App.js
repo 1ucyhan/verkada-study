@@ -1,6 +1,7 @@
 import './App.css';
 import NavBar from './components/navbar/NavBar';
 import LeftNavBar from './components/left-navbar/LeftNavBar';
+import RightNavBar from './components/right-navbar/RightNavBar';
 import Camera from './components/camera/Camera';
 import CheckIn from './components/check-in/CheckIn';
 import MockImage1 from "./assets/mock.webp";
@@ -52,8 +53,15 @@ export const checkInData = [
     firstName: "Yu",
     lastName: "Han",
     hostName: "Lucy Han",
-    type: "Parent",
+    type: "Family",
     time: "12:11 PM"
+  },
+  {
+    firstName: "Min",
+    lastName: "Shi",
+    hostName: "Lucy Han",
+    type: "Family",
+    time: "12:12 PM"
   },
 ];
 
@@ -83,18 +91,16 @@ function App() {
           {checkInData.map((person) => {
             return (
               <CheckIn
-              firstName = {person.firstName}
-              lastName = {person.lastName}
-              hostName = {person.hostName}
-              type = {person.type}
-              time = {person.time}
-            />
-
+                firstName={person.firstName}
+                lastName={person.lastName}
+                hostName={person.hostName}
+                type={person.type}
+                time={person.time}
+              />
             )
-            
           })}
-
         </section>
+        <RightNavBar></RightNavBar>
 
       </section>
 

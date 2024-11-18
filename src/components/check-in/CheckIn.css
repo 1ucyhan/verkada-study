@@ -1,7 +1,7 @@
 /* Styling for the entire check-in component. */
 .check-in {
     flex-direction: row;
-    width:90%;
+    width:100%;
     background-color: white;
     border-radius: 10px;
     margin-top: 5px;
@@ -83,20 +83,15 @@
 }
 
 .check-in-logistics button:hover {
-    color: white;
-    font-weight: bold;
+    transition: 0.5s ease;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    font-weight: 400;
-    background-color: rgb(33, 33, 33);
-    border-radius: 20px;
-    border: none;
-    font-family: Inter;
-    padding: 10px 20px 10px 20px;
+    gap: 20px;
 }
 
-.iconify:hover {
+
+.check-in-logistics:hover svg path {
     color: white;
 }
