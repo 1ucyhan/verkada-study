@@ -98,6 +98,8 @@ function App() {
   console.log("selection : ", selection)
   // Setting a state to remove guests.
   const [guests, setGuests] = useState(() => checkInData);
+  // Setting a state to keep track of total amount before signed in.
+  const [total, setTotal] = useState(() => checkInData.length)
 
   // Want to be able to remove guest. Would probably use filter again?
   // Filter through all these people. I want all of them except that one guest.
@@ -109,6 +111,8 @@ function App() {
    */
   function removeGuest(guest) {
     console.log('remove guest called')
+    // Whenever a guest is removed, then we decrement the total count.
+    setTotal((t) => t - 1);
     const newGuestList = guests.filter((person) => person.firstName != guest)
     setGuests(newGuestList)
   }
@@ -167,7 +171,8 @@ function App() {
           })}
         </section>
         {/* Right Nav Bar for more practice. */}
-        <RightNavBar></RightNavBar>
+        {/* the number of guests is going to be depending on the length of guests. Changing the length of guests would change everything else. */}
+        <RightNavBar numGuests={total} numDisplayed = {guests.length}></RightNavBar>
       </section>
     </div>
   );
