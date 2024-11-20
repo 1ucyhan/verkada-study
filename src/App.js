@@ -102,7 +102,7 @@ function App() {
   // Setting a state to keep track of total amount before signed in.
   const [total, setTotal] = useState(() => checkInData.length)
   const newGuest = {
-    firstName: "Lucy",
+    firstName: "Lucy :D",
     lastName: "Han",
     hostName: "Verkada",
     type: "Intern :D",
@@ -116,15 +116,17 @@ function App() {
   useEffect(() => {
     function addGuest() {
       // Want to add this guest (me) to the list guests
-      setGuests((prevGuest) => 
+      setGuests((prevGuest) =>
         [newGuest,
-        ...guests
-      ]);
+          ...prevGuest
+        ]);
+
+      setTotal((prevTotal) => prevTotal + 1)
     }
-    const addingGuest = setInterval(addGuest, 5000);
+    const addingGuest = setTimeout(addGuest, 5000);
 
     // Clean up function
-    return(() => {
+    return (() => {
       clearInterval(addingGuest)
     })
 
@@ -138,9 +140,13 @@ function App() {
    * Calls filter and setGuest.
    * @param {*} guest 
    */
-  function removeGuest(guest) {
+  function removeGuest(guest, hostName) {
     console.log('remove guest called')
     // Whenever a guest is removed, then we decrement the total count.
+    if (hostName == "Verkada") {
+      alert("Lucy will not leave Verkada :D");
+      return;
+    }
     setTotal((t) => t - 1);
     const newGuestList = guests.filter((person) => person.firstName != guest)
     setGuests(newGuestList)
@@ -152,10 +158,21 @@ function App() {
    * @param {*} type 
    */
   function filterGuest(type) {
+    // LOL THIS SITLL DOESNT WORK
     console.log('filter guest called')
+    // Creating a new map to get all guests.
+    const allGuestsMap = new Map();
+    guests.forEach((guest) => allGuestsMap.set(guest.firstName, guest)); 
+    checkInData.forEach((guest) => allGuestsMap.set(guest.firstName, guest));
+    // Creating all guests.
+    const allGuests = Array.from(allGuestsMap.values());
+    console.log(allGuests)
+
+    // Contineu filtering.
     const filteredGuests = type
-      ? checkInData.filter((person) => person.type == type)
-      : checkInData;
+      ? allGuests.filter((person) => person.type === type)
+      : allGuests;
+
     setGuests(filteredGuests);
   }
 
@@ -185,7 +202,7 @@ function App() {
           {guests.map((person) => {
             return (
               <CheckIn
-                key = {person.firstName}
+                key={person.firstName}
                 firstName={person.firstName}
                 lastName={person.lastName}
                 hostName={person.hostName}
@@ -195,14 +212,14 @@ function App() {
                 hostImage={person.hostImage}
                 className={person.hostName === "Verkada" ? 'guest-pop' : ''}
                 // Need to have this guy in a wrapper. Otherwise will be rendered each time.
-                signOut={() => removeGuest(person.firstName)}
+                signOut={() => removeGuest(person.firstName, person.hostName)}
               />
             )
           })}
         </section>
         {/* Right Nav Bar for more practice. */}
         {/* the number of guests is going to be depending on the length of guests. Changing the length of guests would change everything else. */}
-        <RightNavBar numGuests={total} numDisplayed = {guests.length}></RightNavBar>
+        <RightNavBar numGuests={total} numDisplayed={guests.length}></RightNavBar>
       </section>
     </div>
   );
