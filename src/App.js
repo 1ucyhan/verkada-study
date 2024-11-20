@@ -1,5 +1,5 @@
 import './App.css';
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 // Importing all of the components.
 import NavBar from './components/navbar/NavBar';
 import LeftNavBar from './components/left-navbar/LeftNavBar';
@@ -91,6 +91,7 @@ export const checkInData = [
 
 
 function App() {
+  // ================ USE STATE
   // Call use state for display the correct type of guests.
   // Note that setSelection is passed in as a property to nav bar.
   // Selection is only changed once the user goes on the dropdown to select something.
@@ -100,6 +101,34 @@ function App() {
   const [guests, setGuests] = useState(() => checkInData);
   // Setting a state to keep track of total amount before signed in.
   const [total, setTotal] = useState(() => checkInData.length)
+  const newGuest = {
+    firstName: "Lucy",
+    lastName: "Han",
+    hostName: "Verkada",
+    type: "Intern :D",
+    time: "1:00 PM",
+    personImage: MockImage2,
+    hostImage: MockImage2
+  }
+
+  // ================ USE EFFECT
+  // Want to simulate real-time guest addition by periodically updating guests!
+  useEffect(() => {
+    function addGuest() {
+      // Want to add this guest (me) to the list guests
+      setGuests((prevGuest) => 
+        [newGuest,
+        ...guests
+      ]);
+    }
+    const addingGuest = setInterval(addGuest, 5000);
+
+    // Clean up function
+    return(() => {
+      clearInterval(addingGuest)
+    })
+
+  }, []);
 
   // Want to be able to remove guest. Would probably use filter again?
   // Filter through all these people. I want all of them except that one guest.
@@ -164,6 +193,7 @@ function App() {
                 time={person.time}
                 personImage={person.personImage}
                 hostImage={person.hostImage}
+                className={person.hostName === "Verkada" ? 'guest-pop' : ''}
                 // Need to have this guy in a wrapper. Otherwise will be rendered each time.
                 signOut={() => removeGuest(person.firstName)}
               />
