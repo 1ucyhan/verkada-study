@@ -5,12 +5,11 @@
   'bgStart . .'
   '. preview .'
   '. . bgEnd'
-  '. . .'
   '. search .'
   'border border border'
   '. events .';
-  grid-template-rows: 40px max-content 20px 20px 60px 20px max-content;
-  grid-template-columns: minmax(20px, 1fr) minmax(300px, 800px) minmax(20px, 1fr);
+  grid-template-rows: 40px max-content 20px 60px 10px max-content;
+  grid-template-columns: minmax(20px, 1fr) minmax(200px, 800px) minmax(20px, 1fr);
   color: #363C40;
   font-weight: 400;
   font-size: 14px;
