@@ -1,226 +1,66 @@
 import './App.css';
 import { React, useState, useEffect } from 'react';
-// Importing all of the components.
-import NavBar from './components/navbar/NavBar';
-import LeftNavBar from './components/left-navbar/LeftNavBar';
-import RightNavBar from './components/right-navbar/RightNavBar';
-import Camera from './components/camera/Camera';
-import CheckIn from './components/check-in/CheckIn';
-// Importing all of the images.
-import MockImage1 from "./assets/mock.webp";
-import MockImage2 from "./assets/pig.jpg";
-import DadImage from "./assets/daddy.jpeg";
-import GabImage from "./assets/gab.jpeg";
-import IlyasImage from "./assets/ilyas.jpeg";
-import KaylaImage from "./assets/kayla.jpeg";
-import MomImage from "./assets/mommy.jpeg";
-import NhiImage from "./assets/nhi.JPG";
-
 // Data for displaying the camera component.
-export const cameraData = [
-  {
-    id: 1,
-    image: MockImage1,
-    name: "Guest Demo Lobby CD51 (VX52)",
-  },
-  {
-    id: 2,
-    image: MockImage2,
-    name: "Guest Demo Lobby Outside",
-  }
-];
-
-// Data for displaying the guest data.
-export const checkInData = [
-  {
-    firstName: "Gabriel",
-    lastName: "Ong",
-    hostName: "Lucy Han",
-    type: "Pookie",
-    time: "11:11 PM",
-    personImage: GabImage,
-    hostImage: MockImage2
-  },
-  {
-    firstName: "Kayla",
-    lastName: "Bui",
-    hostName: "Lucy Han",
-    type: "Guest",
-    time: "9:22 PM",
-    personImage: KaylaImage,
-    hostImage: MockImage2
-  },
-  {
-    firstName: "Nhi",
-    lastName: "Quach",
-    hostName: "Lucy Han",
-    type: "Guest",
-    time: "3:21 PM",
-    personImage: NhiImage,
-    hostImage: MockImage2
-  },
-  {
-    firstName: "Lucy",
-    lastName: "Han",
-    hostName: "Ilyas Kose",
-    type: "Guest",
-    time: "1:12 PM",
-    personImage: MockImage2,
-    hostImage: IlyasImage
-  },
-  {
-    firstName: "Yu",
-    lastName: "Han",
-    hostName: "Lucy Han",
-    type: "Family",
-    time: "12:11 PM",
-    personImage: DadImage,
-    hostImage: MockImage2
-  },
-  {
-    firstName: "Min",
-    lastName: "Shi",
-    hostName: "Lucy Han",
-    type: "Family",
-    time: "12:12 PM",
-    personImage: MomImage,
-    hostImage: MockImage2
-  },
-];
-
-
+const data = {
+  "preview": "https://verkada-public-data.s3-us-west-2.amazonaws.com/frontend-interview/preview.png",
+  "events": [
+    {
+      "title": "Person of Interest",
+      "subtitle": "Filip Kaliszan",
+      "site": "3rd Floor",
+      "detail": "Elevator East Lobby",
+      "image": "https://verkada-public-data.s3-us-west-2.amazonaws.com/frontend-interview/event1.png",
+      "timestamp": 1612247209
+    },
+    {
+      "title": "Motion",
+      "subtitle": "People Detected",
+      "site": "Outside",
+      "detail": "Front Door",
+      "image": "https://verkada-public-data.s3-us-west-2.amazonaws.com/frontend-interview/event2.png",
+      "timestamp": 1612207950
+    },
+    {
+      "title": "Crowd",
+      "subtitle": "2 or more people",
+      "site": "London",
+      "detail": "Intersection",
+      "image": "https://verkada-public-data.s3-us-west-2.amazonaws.com/frontend-interview/event3.png",
+      "timestamp": 1612202420
+    }
+  ]
+};
 
 function App() {
-  // ================ USE STATE
-  // Call use state for display the correct type of guests.
-  // Note that setSelection is passed in as a property to nav bar.
-  // Selection is only changed once the user goes on the dropdown to select something.
-  const [selection, setSelection] = useState(() => null)
-  console.log("selection : ", selection)
-  // Setting a state to remove guests.
-  const [guests, setGuests] = useState(() => checkInData);
-  // Setting a state to keep track of total amount before signed in.
-  const [total, setTotal] = useState(() => checkInData.length)
-  const newGuest = {
-    firstName: "Lucy :D",
-    lastName: "Han",
-    hostName: "Verkada",
-    type: "Intern :D",
-    time: "1:00 PM",
-    personImage: MockImage2,
-    hostImage: MockImage2
-  }
-
-  // ================ USE EFFECT
-  // Want to simulate real-time guest addition by periodically updating guests!
-  useEffect(() => {
-    function addGuest() {
-      // Want to add this guest (me) to the list guests
-      setGuests((prevGuest) =>
-        [newGuest,
-          ...prevGuest
-        ]);
-
-      setTotal((prevTotal) => prevTotal + 1)
-    }
-    const addingGuest = setTimeout(addGuest, 5000);
-
-    // Clean up function
-    return (() => {
-      clearInterval(addingGuest)
-    })
-
-  }, []);
-
-  // Want to be able to remove guest. Would probably use filter again?
-  // Filter through all these people. I want all of them except that one guest.
-
-  /**
-   * Helper function to remove any guest on sign out.
-   * Calls filter and setGuest.
-   * @param {*} guest 
-   */
-  function removeGuest(guest, hostName) {
-    console.log('remove guest called')
-    // Whenever a guest is removed, then we decrement the total count.
-    if (hostName == "Verkada") {
-      alert("Lucy will not leave Verkada :D");
-      return;
-    }
-    setTotal((t) => t - 1);
-    const newGuestList = guests.filter((person) => person.firstName != guest)
-    setGuests(newGuestList)
-  }
-
-  /**
-   * Helper function to filter any guest.
-   * Calls setSelection, setGuest, and filter.
-   * @param {*} type 
-   */
-  function filterGuest(type) {
-    // LOL THIS SITLL DOESNT WORK
-    console.log('filter guest called')
-    // Creating a new map to get all guests.
-    const allGuestsMap = new Map();
-    guests.forEach((guest) => allGuestsMap.set(guest.firstName, guest)); 
-    checkInData.forEach((guest) => allGuestsMap.set(guest.firstName, guest));
-    // Creating all guests.
-    const allGuests = Array.from(allGuestsMap.values());
-    console.log(allGuests)
-
-    // Contineu filtering.
-    const filteredGuests = type
-      ? allGuests.filter((person) => person.type === type)
-      : allGuests;
-
-    setGuests(filteredGuests);
-  }
-
   return (
-    <div className="App">
-      {/* Left side bar. Will probably not implement LMAO */}
-      <LeftNavBar></LeftNavBar>
-      {/* The actual content. Should contain the cameras and guests. */}
-      <section class="content">
-        {/* Navigation bar. */}
-        <NavBar props={filterGuest}></NavBar>
-        {/* Cameras. */}
-        {/* Information is from cameraData. */}
-        <section className="cameras">
-          {cameraData.map((camera) => {
-            return (
-              <Camera
-                key={camera.id}
-                image={camera.image}
-                name={camera.name}
-              />
-            )
-          })}
-        </section>
-        {/* Displaying all the check-ins. */}
-        <section className="check-ins">
-          {guests.map((person) => {
-            return (
-              <CheckIn
-                key={person.firstName}
-                firstName={person.firstName}
-                lastName={person.lastName}
-                hostName={person.hostName}
-                type={person.type}
-                time={person.time}
-                personImage={person.personImage}
-                hostImage={person.hostImage}
-                className={person.hostName === "Verkada" ? 'guest-pop' : ''}
-                // Need to have this guy in a wrapper. Otherwise will be rendered each time.
-                signOut={() => removeGuest(person.firstName, person.hostName)}
-              />
-            )
-          })}
-        </section>
-        {/* Right Nav Bar for more practice. */}
-        {/* the number of guests is going to be depending on the length of guests. Changing the length of guests would change everything else. */}
-        <RightNavBar numGuests={total} numDisplayed={guests.length}></RightNavBar>
-      </section>
+    <div class="app">
+      <div class="bg"> </div>
+      <div class = "preview">
+        <img class="preview" src={data.preview} alt="Preview Camera Shot" />
+      </div>
+      <div class="search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0s.41-1.08 0-1.49zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" /></svg>
+        <input type="text" placeholder="Search Events..."></input>
+      </div>
+      <div class="border" />
+      <div class="events">
+        {data.events.map((event) => {
+          return (
+            <div class="event-row">
+              <img class="event-img" src={event.image} alt={event.title} />
+              <div class="dude-info">
+                <div class="event-title">{event.title}</div>
+                <div class="event-subtitle">{event.subtitle}</div>
+              </div>
+              <div> {event.site} - {event.detail} </div>
+              <div class = "event-time"> {event.timestamp} </div>
+            </div>
+          )
+        })}
+
+      </div>
+
+
     </div>
   );
 }
