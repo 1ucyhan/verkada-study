@@ -36,9 +36,10 @@ function App() {
     <div className="app">
       <div className="bg"> </div>
       <div className = "preview">
-        <img className="preview" src={data.preview} alt="Preview Camera Shot" />
+        <img className="preview-img" src={data.preview} alt="Preview Camera Shot" />
         <div className = "live">
-
+          <div className = "dot"/>
+          <div> LIVE </div>
         </div>
       </div>
       <div className="search">
