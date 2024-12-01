@@ -1,4 +1,4 @@
-.app {
+.App {
   font-family: Open Sans;
   display: grid;
   grid-template-areas: 
@@ -7,8 +7,9 @@
   '. . bgEnd'
   '. search .'
   'border border border'
-  '. events .';
-  grid-template-rows: 40px max-content 20px 60px 10px max-content;
+  '. events .'
+  '. mouse .';
+  grid-template-rows: 40px max-content 20px 60px 10px max-content 100px;
   grid-template-columns: minmax(20px, 1fr) minmax(200px, 800px) minmax(20px, 1fr);
   color: #363C40;
   font-weight: 400;
@@ -19,6 +20,13 @@
   grid-area: bgStart / bgStart / bgEnd / bgEnd;
   background-color: #F1F1F1;
   width: 100%;
+}
+
+.mouse {
+  font-weight: 600;
+  grid-area: mouse;
+  justify-self: center;
+  align-self: center;
 }
 
 .preview {

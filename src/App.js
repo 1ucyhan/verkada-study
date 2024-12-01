@@ -31,37 +31,38 @@ const data = {
   ]
 };
 
-
-
 function App() {
   const [search, setSearch] = useState('');
-  // console.log(data.events)
+  const [mousePosition, setMousePosition] = useState({x: 0, y: 0})
+  
   const filteredData = data.events.filter((event) => event.title.toLowerCase().includes(search) || event.subtitle.toLowerCase().includes(search) || event.site.toLowerCase().includes(search) || event.detail.toLowerCase().includes(search));
-  // console.log('filtered ', filteredData)
+  
+  function handleMouseMove(e) {
+    setMousePosition(() => {
+      console.log(e.clientX, e.clientY)
+      return ({
+        x: e.clientX,
+        y: e.clientY
+      })
+    })
+  }
   function handleSearch(e) {
-    console.log('handling serach')
+    // console.log('handling search')
     setSearch(prev => setSearch(e.target.value))
   }
 
   function convertTime(timestamp) {
-    console.log("CONVERTING LOCAL TIME")
+    // console.log("CONVERTING LOCAL TIME")
     var time = new Date(timestamp * 1000);
-    console.log("time | ", time)
+    // console.log("time | ", time);
     return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
   }
 
-  // useEffect(() => {
-  //   return (
-  //     <div>
-
-  //     </div>
-
-  //   )
-  // }, [search])
-
-
   return (
-    <div className="app">
+    <div className="App" onMouseMove={e => handleMouseMove(e)}>
+      <div className = "mouse">
+        mouse position: {mousePosition.x}, {mousePosition.y}
+      </div>
       <div className="bg"> </div>
       <div className="preview">
         <img className="preview-img" src={data.preview} alt="Preview Camera Shot" />
@@ -76,7 +77,7 @@ function App() {
           type="text" 
           placeholder="Search Events..."
           onChange={e => handleSearch(e)}
-          >
+        >
         </input>
       </div>
       <div className="border" />
@@ -95,7 +96,10 @@ function App() {
           )
         })}
       </div>
+      
     </div>
+
+    
   );
 }
 
