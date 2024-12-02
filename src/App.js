@@ -100,6 +100,7 @@ function App() {
         <div> Mailroom demo </div>
       </div>
       <div className="left" />
+      <div className="right" />
       <div className="cameras">
         {cameraData.map((cam) => {
           return (
@@ -125,7 +126,7 @@ function App() {
                 <div className = "name">
                 {mailbox.firstName}&nbsp;<b>{mailbox.lastName}</b>
                 </div>
-                {mailbox.place}
+                <span style={{color: "slateGray", fontWeight: "600"}}>{mailbox.place}</span>
               </div>
               <img src = {mailbox.personImage} alt = {mailbox.firstName}></img>
               <div className = "numBox"> {displayNumBox(mailbox.number)}</div>

@@ -1,13 +1,13 @@
 .app {
   display: grid;
   grid-template-areas: 
-  'left . right'
-  'left title right'
-  'left cameras right'
-  'left border right'
-  'left mailboxes right'
-  ' . . . ';
-  grid-template-columns: 100px 4fr minmax(300px, 1fr);
+  'left . . .right'
+  'left . title . right'
+  'left . cameras . right'
+  'left . border . right'
+  'left . mailboxes . right'
+  'left . . . right ';
+  grid-template-columns: 100px 30px 4fr 30px 1fr;
   grid-template-rows: 10px 50px max-content 40px minmax(300px, 1fr) 1fr;
   background-color: rgb(244, 244, 244);
 }
@@ -159,11 +159,16 @@ h3 {
 
 .left {
   grid-area: left;
+  background-color: white;
+  width: 100%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .right {
   grid-area: right;
   background-color: white;
+  width: 100%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 
