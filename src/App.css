@@ -1,30 +1,107 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
+.app {
+  display: grid;
+  grid-template-areas: 
+  'left . right'
+  'left title right'
+  'left cameras right'
+  'left border right'
+  'left mailboxes right';
+  grid-template-columns: 100px 4fr minmax(300px, 1fr);
+  grid-template-rows: 10px 50px max-content 10px minmax(1000px, 2fr)
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #F8F8F8;
+.title {
+  grid-area: title;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.border {
+  grid-area: border;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size: 10px;
+  color: lightslategray;
+  align-items: center;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.border hr {
+  border: 0.5px solid lightgray;
+  width: 100%;                    
+  margin: 0;                      
+}
+
+h1 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 300;
 }
 
 .cameras {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 3px;
-}
-
-.check-ins {
-  margin-top: 30px;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
+  grid-area: cameras;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr) minmax(300px, 1fr);
+  grid-template-rows: minmax(100px, 1fr);
+  column-gap: 2px;
   width: 100%;
-  margin-left: 80px;
-  margin-right: 25%;
-  margin-bottom: 40px;
+  /* border: solid red 1px; */
 }
+
+.cameras img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-wrapper {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.spot {
+  width: 8px;
+  height: 8px;
+  background-color: green;
+  border: white 1px solid;
+  border-radius: 50%;
+}
+
+.status {
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: rgb(50, 50, 50);
+  padding: 8px 12px 8px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  color: white;
+  font-size: 12px;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.left {
+  grid-area: left;
+}
+
+.right {
+  grid-area: right;
+  background-color: white;
+}
+
+
+
+

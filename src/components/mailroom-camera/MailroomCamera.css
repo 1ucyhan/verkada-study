@@ -1,0 +1,33 @@
+.mini-cam {
+    width: fit;
+    height: fit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+    justify-content: end;
+    position: relative;
+}
+
+
+.mini-cam p {
+    margin: 0;
+    text-decoration: underline;
+    color: black;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.cam-visual img {
+    border-radius: 10px;
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.cam-visual svg {
+    font-size: 30px;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
