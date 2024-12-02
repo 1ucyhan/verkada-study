@@ -11,6 +11,8 @@ import KaylaImage from "./assets/kayla.jpeg";
 import MomImage from "./assets/mommy.jpeg";
 import NhiImage from "./assets/nhi.JPG";
 
+
+
 // Data for displaying the camera component.
 const cameraData = [
   {
@@ -67,6 +69,13 @@ const mailboxData = [
     personImage: DadImage,
   },
   {
+    firstName: "Ilyas",
+    lastName: "Kose",
+    place: "The Mail Room",
+    number: "1",
+    personImage: IlyasImage,
+  },
+  {
     firstName: "Min",
     lastName: "Shi",
     place: "The Mail Room",
@@ -89,15 +98,22 @@ function displayNumBox(num) {
   }
 }
 
-
-
 function App() {
-   
+  const [mousePosition, setMousePosition] = useState({x: 0, y: 0})
+
+  function handleMousePosition(event) {
+    setMousePosition({
+      x: event.clientX,
+      y: event.clientY
+    })
+  }
+
   return (
-    <div className="app">
+    <div className="app" onMouseMove={handleMousePosition}>
       <div className="title">
         <div> <b> Mailroom </b></div>
-        <div> Mailroom demo </div>
+        <div> Mailroom demo: {mousePosition.x} {mousePosition.y} </div>
+        
       </div>
       <div className="left" />
       <div className="right" />
