@@ -1,6 +1,6 @@
 import './App.css';
 import { React, useState, useEffect } from 'react';
-// Data for displaying the camera component.
+
 const data = {
   "preview": "https://verkada-public-data.s3-us-west-2.amazonaws.com/frontend-interview/preview.png",
   "events": [
@@ -61,7 +61,7 @@ function App() {
   return (
     <div className="App" onMouseMove={e => handleMouseMove(e)}>
       <div className = "mouse">
-        mouse position: {mousePosition.x}, {mousePosition.y}
+        -> mouse position: {mousePosition.x}, {mousePosition.y}
       </div>
       <div className="bg"> </div>
       <div className="preview">
