@@ -32,7 +32,7 @@ const cameraData = [
   }
 ];
 
-const mailboxData = [
+const mData = [
   {
     firstName: "Gabriel",
     lastName: "Ong",
@@ -99,7 +99,31 @@ function displayNumBox(num) {
 }
 
 function App() {
+  const [mailboxData, setMailboxData] = useState(mData)
   const [mousePosition, setMousePosition] = useState({x: 0, y: 0})
+  const [selectedMail, setSelectedMail] = useState(null)
+
+  function handleSelectMail(m) {
+    setSelectedMail(m);
+    const newMailbox = mailboxData.map((mailbox) => {
+      if (mailbox.firstName === m.firstName) {
+        return (
+          {
+            ...mailbox,
+            number: mailbox.number - 1
+          }
+        )
+      } else {
+        return mailbox
+      }
+    })
+
+    const filtered = newMailbox.filter((mailbox) => mailbox.number >= 1)
+    console.log('filtered ', filtered)
+
+    setMailboxData(filtered)
+    // return filtered
+  }
 
   function handleMousePosition(event) {
     setMousePosition({
@@ -137,7 +161,7 @@ function App() {
       <div className = "mailboxes">
         {mailboxData.map((mailbox) => {
           return (
-            <div className = "mailbox">
+            <div className = "mailbox" onClick={() => handleSelectMail(mailbox)}>
               <div className = "info">
                 <div className = "name">
                 {mailbox.firstName}&nbsp;<b>{mailbox.lastName}</b>
@@ -148,7 +172,10 @@ function App() {
               <div className = "numBox"> {displayNumBox(mailbox.number)}</div>
             </div>
           )
+
         })}
+
+        
       </div>
     </div>
 
